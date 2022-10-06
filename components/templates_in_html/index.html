@@ -17,12 +17,15 @@ Here are some web components below:
             padding: 5px;
         }
     </style>
-    <p>My paragraph</p>
+    These context are from template itself
+    <p><slot></slot></p>
+
+    This is after slot text.
 </template>
-<p>
+<hr>
 <template-sample text="Testing templates">
-    <slot></slot>
+     This is component content is from component which will rendered in templates slot.
 </template-sample>
-</p>
+
 </body>
 </html>

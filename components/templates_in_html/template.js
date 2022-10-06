@@ -2,7 +2,8 @@ class TemplateSample extends HTMLElement{
     constructor(){
         super();
         this.attachShadow({mode:'open'}); // we add a shadow DOM to our component
-
+        const theTemplate = document.querySelector('#my-paragraph');
+        this.shadowRoot.appendChild(theTemplate.content.cloneNode(true));
 
     }
 

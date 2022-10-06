@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template inside Component Sample</title>
+    <script type="text/javascript" src="./template.js"></script>
+    <style>
+        /** this style doesnt effect component **/
+        p {
+            color: black; font-size: 12px; font-weight: bold;
+            background-color: yellow;
+            border: 1px solid orange;
+        }
+    </style>
+</head>
+<body>
+Here are some web components below:
+
+<hr>
+<template-sample text="Testing templates">
+     This is component content is from component which will rendered in slot.
+</template-sample>
+
+</body>
+</html>

@@ -17,11 +17,11 @@ In the created js file you need to create a class which extends HTMLElement clas
 
 ### Element Creation 
 
-Creation of the custom element begins with class of extension and constructor method. At the creation moment component don't attached to the real DOM yet. It lives on the memory for now.
+Creation of the custom element begins with class of extension and constructor method. At the creation moment component don't attached to the real DOM yet. It lives on the memory for now. Everything in here is just before rendering.
 
 ### Element Attached to DOM
 
-Calling connectedCallBack method on the class of the element will attach your component to the DOM.
+Calling connectedCallBack method on the class of the element will attach your component to the DOM. Do things that must be after rendering.
 
 ### Element Detached from DOM
 
@@ -56,3 +56,12 @@ When you set a slot (`<slot>`) on the template elements you can use it with comp
 
 There are two ways to add template into stage. First you can write it into the html directly and use it from there inside the javascript of component. If there is a default value between <slot> tags then when component cannot present any ingredient to template the default value would be used. 
 
+- Write a template into the HTML, give it an id attribute (`<template id="anyId></template>`)
+- Write a slot element into this template `<template id="anyId"><slot></slot></template>`
+- Inside the component's constructor reach this template (`theTemplate`)
+> const theTemplate = document.querySelector('#theTemplate');
+- Clone (deep clone with true boolean) this template with component ingredient in the slot
+> this.shadowRoot.appendChild(theTemplate.content.cloneNode(true));
+
+Second way is to create a slot inside the constructor method of the component and use 
+ `shadowRoot.innerHTML="<slot></slot>"` is all in js file.

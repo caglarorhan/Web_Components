@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template Sample</title>
+    <script type="text/javascript" src="./template.js"></script>
+
+</head>
+<body>
+Here are some web components below:
+<br/>
+<template id="my-paragraph">
+    <style>
+        p {
+            color: white;
+            background-color: #666;
+            padding: 5px;
+        }
+    </style>
+    <p>My paragraph</p>
+</template>
+<p>
+<template-sample text="Testing templates">
+    <slot></slot>
+</template-sample>
+</p>
+</body>
+</html>

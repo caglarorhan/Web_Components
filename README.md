@@ -65,3 +65,7 @@ There are two ways to add template into stage. First you can write it into the h
 
 Second way is to create a slot inside the constructor method of the component and use 
  `shadowRoot.innerHTML="<slot></slot>"` is all in js file.
+
+## Extending Built-in HTMLElements
+
+

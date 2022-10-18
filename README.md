@@ -68,4 +68,20 @@ Second way is to create a slot inside the constructor method of the component an
 
 ## Extending Built-in HTMLElements
 
+Like creating a component just add some extra steps.
 
+- You should extend existing HTML_ELEMENTAPINAME_Element  
+> Example: `class ConfirmAnchor extends HTMLAnchorElement`
+- Add third argument to define part 
+> Example: `customElements.define('new-anchor', ConfirmAnchor, {extends: 'a'});`
+- Add "is" property to the new component's tag with the defined name of component.
+> Example: `<a is="new-anchor" href="https://www.google.com">Test</a>`
+- Now you can override HTML elements properties and add new behaviours.
+> Example: `    connectedCallback(){
+this.addEventListener("click", (event)=>{
+if(!confirm("Are you sure you want to leave?")){
+event.preventDefault();
+}
+})
+}`
+> 

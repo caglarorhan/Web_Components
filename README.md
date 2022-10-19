@@ -84,4 +84,18 @@ event.preventDefault();
 }
 })
 }`
-> 
+
+### Styling
+
+Styling the shadow element is easy. Just add some style to the shadow element inside the innerHTML part of shadowDOM with `<style></style>` tags.
+
+> Example: `this.shadowRoot.innerHTML = <style> p{color:red}</style>` ;
+
+If you want to style slot elements inside the shadow element, you can use the following syntax:
+> Example: `this.shadowRoot.innerHTML = <style> ::slotted(PUT SELECTOR HERE){color:red}</style>`;
+
+to style all slotted elements inside the shadow element:
+> Example: `this.shadowRoot.innerHTML = <style> ::slotted(*){color:red}</style>` ;
+
+
+

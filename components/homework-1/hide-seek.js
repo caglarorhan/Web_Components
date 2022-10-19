@@ -17,11 +17,21 @@ class HideSeek extends HTMLElement {
         this._infoBox = this.shadowRoot.querySelector('#info-box');
         this._toogleButton.addEventListener('click', this._toggleInfoBox.bind(this))
     }
+
+    connectedCallback(){
+        if(this.hasAttribute('is-visible')){
+            this._isVisible =(this.getAttribute("is-visible") === "true");
+            console.log(this._isVisible);
+            this._infoBox.style.display = this._isVisible? 'block' : 'none';
+            this._toogleButton.textContent = this._isVisible? 'Hide' : 'Show';
+        }
+
+    }
+
     _toggleInfoBox(){
         this._isVisible = !this._isVisible;
         this._infoBox.style.display = this._isVisible? 'block' : 'none';
         this._toogleButton.textContent = this._isVisible? 'Hide' : 'Show';
-
     }
 
 }

@@ -141,6 +141,7 @@ We should do any stuff that needs to be done all here. Because this is the only 
 > 
 > }
 
+### observedAttributes() Static Method
 We need to get all attribute names from observedAttributes()
 
 >  static get observedAttributes(){return ['attributeName']} 

@@ -1,6 +1,6 @@
 # Web Component Notes
 
-These are personal notes about the web components. Notes are unordered and unrelated with each other. These notes do not cover any web component subject completely.
+These are my personal notes about the web components. Notes are unordered and unrelated with each other. These notes do not cover any web component subject completely.
 Always refer to: https://developer.mozilla.org/en-US/docs/Web/Web_Components
 
 To create a web component you need to create a js file and link this file to a html document.
@@ -94,8 +94,16 @@ Styling the shadow element is easy. Just add some style to the shadow element in
 If you want to style slot elements inside the shadow element, you can use the following syntax:
 > Example: `this.shadowRoot.innerHTML = <style> ::slotted(PUT SELECTOR HERE){color:red}</style>`;
 
-to style all slotted elements inside the shadow element:
+To style all slotted elements inside the shadow element:
 > Example: `this.shadowRoot.innerHTML = <style> ::slotted(*){color:red}</style>` ;
 
+Also you cannot select nested elements inside the slotted, style only used on main slotted element.
 
+We can style component from main dom (like a standard css inside the head). 
+> Example: `<style> elementTag{color:black}</style>` ;
+
+The only part of the component that you cannot style from main DOM is template part of a component.
+
+If we want to isolate everything and style the component from inside the component, so we can use:
+> Example: `:host{color:black}` ;
 

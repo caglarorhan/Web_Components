@@ -87,23 +87,64 @@ event.preventDefault();
 
 ### Styling
 
+#### Component Styling
+We can style component from main dom (like a standard css inside the head).
+> Example: `<style> elementTag{color:black}</style>` ;
+
+The only part of the component that you cannot style from main DOM is template part of a component.
+
+#### ShadowRoot Styling
+
 Styling the shadow element is easy. Just add some style to the shadow element inside the innerHTML part of shadowDOM with `<style></style>` tags.
 
 > Example: `this.shadowRoot.innerHTML = <style> p{color:red}</style>` ;
 
+
+#### Slot Styling
 If you want to style slot elements inside the shadow element, you can use the following syntax:
 > Example: `this.shadowRoot.innerHTML = <style> ::slotted(PUT SELECTOR HERE){color:red}</style>`;
 
 To style all slotted elements inside the shadow element:
 > Example: `this.shadowRoot.innerHTML = <style> ::slotted(*){color:red}</style>` ;
 
-Also you cannot select nested elements inside the slotted, style only used on main slotted element.
+Also, you cannot select nested elements inside the slotted, style only used on main slotted element.
 
-We can style component from main dom (like a standard css inside the head). 
-> Example: `<style> elementTag{color:black}</style>` ;
 
-The only part of the component that you cannot style from main DOM is template part of a component.
-
+#### Styling Component From Inside (:host)
 If we want to isolate everything and style the component from inside the component, so we can use:
 > Example: `:host{color:black}` ;
 
+As `::slotted` usage you can use the same way as `:host(QUERY_STRING)`; 
+The query string might be any css query string.
+
+
+#### Styling Component Relatively
+If you want to style your component depending on the place it is located, you can use the parent element like this:
+> Example: `:host-context(QUERY_STRING){color:black}`
+
+This way you can use the same component with different styles applied by their respective parent element.
+
+> **Note:** CSS variables that described in the main DOM (style part) can be used in the component itself.
+> 
+> **Example:** inside style part of head: ` html{--main-color:black}` can be used in the component's style part `:host {color:var(--main-color)}`;
+
+## Observing Attributes: attributeChangedCallBack()
+
+Following up the attributes of a component can be done with attributeChangeCallBack method. But first we need to get the `observedAttributes`
+We should do any stuff that needs to be done all here. Because this is the only place we are listening all updates, etc.
+
+> Example:
+> 
+> attributeChangedCallBack(attributeName, attributeOldValue, attributeNewValue){
+>  
+> // do something
+> 
+> }
+
+We need to get all attribute names from observedAttributes()
+
+>  static get observedAttributes(){return ['attributeName']} 
+
+## Clean Up Works: disconnectedCallBack()
+
+All event listeners must be removed after removing a component. This method triggered when a component is removed from DOM.

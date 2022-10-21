@@ -133,7 +133,7 @@ This way you can use the same component with different styles applied by their r
 Following up the attributes of a component can be done with attributeChangeCallBack method. But first we need to get the `observedAttributes`
 We should do any stuff that needs to be done all here. Because this is the only place we are listening all updates, etc.
 
-> Example:
+> **Example**:
 > 
 > attributeChangedCallBack(attributeName, attributeOldValue, attributeNewValue){
 >  
@@ -149,6 +149,7 @@ We need to get all attribute names from observedAttributes()
 ## Clean Up Works: disconnectedCallBack()
 
 All event listeners must be removed after removing a component. This method triggered when a component is removed from DOM.
+* To clean event listeners they should be assigned to a reference as a part of component itself. If you have to create an event listener inside `connectedCallback()` their reference must be defined in `constructor()` at the beginning of the component.
 
 ### Using Slots
 
@@ -171,6 +172,9 @@ Slots are standard html tags. Therefore, slots are reachable with querySelector.
 Adding an eventListener to a slot is as simple as others. The specific event for slots is `slotchange`;
 
 >**Example**: `theSlot.addEventListener('slotchange',()=>{});`;
+* Slot has only the `slotchange` event listener!
+
+
 
 ### Manuel Assignments to Slots
 To do that first wee need to create shadowDOM with `slotAssignment:"manuel"` option.
@@ -186,3 +190,9 @@ After creating the shadowDOM and component created in light DOM, you can assign 
 You can get all assigned node for a specific slot by `let nodes = slots[1].assignedNodes();`
 With the same way, to get assigned elements:
 `let nodes = slots[1].assignedElements({flatten: true});`;
+
+> **IMPORTANT NOTE**: When you need to get the owner slot of the assigned element from that element with assignedSlot property of element. `theElement.assignedSlot`;
+
+## Reaching the Component from Outside the Component
+
+Doing so is basically like getting the component with `document.querySelectorAll(the-components-tag)`. After assigning it to a variable, you can reach all methods and properties of that component. 

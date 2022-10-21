@@ -154,9 +154,35 @@ All event listeners must be removed after removing a component. This method trig
 
 You can use more than one slot in a component. Give different names to different slots inside the component. Now add any element the `slot="slotName"` attribute inside the HTMLElement tag. Ingredient of the element will be transferred to the slot.
 
-> Example: `<newElement> <h1 slot="slotName_1"></h1><p slot="slotName_2"></p></newElement>`;
+> **Example:** `<newElement> <h1 slot="slotName_1"></h1><p slot="slotName_2"></p></newElement>`;
 
 At the component js side:
-> Example: ` <slot name="slotName_1"></slot><br/><slot name="slotName_2"></slot>`;
+> **Example:** ` <slot name="slotName_1"></slot><br/><slot name="slotName_2"></slot>`;
 
+* If a slot is unnamed, all the other ingredients of component will be transferred into this (to the first unnamed one) unnamed slot.
 
+### Reaching Slots and Listening Them
+
+Slots are standard html tags. Therefore, slots are reachable with querySelector.
+> **Example**: `const slots = this.ShadowRoot.querySelectorAll('slot');`;
+
+> **Example**: `const slots = this.ShadowRoot.querySelector('slot[name="slotName_1"]');`;
+
+Adding an eventListener to a slot is as simple as others. The specific event for slots is `slotchange`;
+
+>**Example**: `theSlot.addEventListener('slotchange',()=>{});`;
+
+### Manuel Assignments to Slots
+To do that first wee need to create shadowDOM with `slotAssignment:"manuel"` option.
+
+> **Example** `const shadowRoot = this.attachShadow({mode: 'open', slotAssignment: 'manual'});`
+
+After creating the shadowDOM and component created in light DOM, you can assign any element or node into a slot as following:
+> Example: `connectedCallback(){
+> theSlot.assign(theHTMLNode)
+> }
+
+### Get All Assigned Node From a Slot
+You can get all assigned node for a specific slot by `let nodes = slots[1].assignedNodes();`
+With the same way, to get assigned elements:
+`let nodes = slots[1].assignedElements({flatten: true});`;

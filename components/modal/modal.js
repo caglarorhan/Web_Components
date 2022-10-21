@@ -18,7 +18,6 @@ constructor(){
         top:15vh;
         left:25%;
         width: 50%;
-        height: 50vh;
         z-index: 1001;
         border-radius:1%;
         background-color: rgba(255,255,255,1);
@@ -27,6 +26,23 @@ constructor(){
         flex-direction: column;
         justify-content: space-between;
         
+        }
+        
+        header{
+            padding: 0 0 1rem 0;
+        }
+        header h1{
+            font-size: 1.25rem;
+            text-align: center;
+            font-weight: bold;
+            background-color: black !important;
+            color: white;
+            padding: 0.25rem;
+            margin-top: 0;
+        }
+        
+        #main{
+        padding:1rem;
         }
         
         #actions{
@@ -45,10 +61,10 @@ constructor(){
         </div>
         <div id="modal">
             <header>
-            
+                <h1>Please Choose</h1>
             </header>
             <section id="main">
-            Please choose...
+                <slot></slot>
             </section>
             <section id="actions">
             <button type="button">Cancel</button>

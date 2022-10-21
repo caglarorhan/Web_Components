@@ -149,3 +149,14 @@ We need to get all attribute names from observedAttributes()
 ## Clean Up Works: disconnectedCallBack()
 
 All event listeners must be removed after removing a component. This method triggered when a component is removed from DOM.
+
+### Using Slots
+
+You can use more than one slot in a component. Give different names to different slots inside the component. Now add any element the `slot="slotName"` attribute inside the HTMLElement tag. Ingredient of the element will be transferred to the slot.
+
+> Example: `<newElement> <h1 slot="slotName_1"></h1><p slot="slotName_2"></p></newElement>`;
+
+At the component js side:
+> Example: ` <slot name="slotName_1"></slot><br/><slot name="slotName_2"></slot>`;
+
+
